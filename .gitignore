@@ -1,0 +1,60 @@
+# Dependências
+node_modules/
+**/node_modules/
+
+# Arquivos de ambiente (NUNCA versionar)
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage de testes
+coverage/
+*.lcov
+.nyc_output
+
+# Builds
+dist/
+build/
+out/
+
+# Cache
+.cache
+.parcel-cache
+.next/
+.nuxt/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Sistema Operacional
+Thumbs.db
+.DS_Store
+
+# Docker volumes (dados do PostgreSQL)
+postgres_data/
+
+# Arquivos temporários
+tmp/
+temp/
+*.tmp
+
+# Debug
+.pnp.*
+.yarn/
+
+# Testes
+**/__tests__/coverage/

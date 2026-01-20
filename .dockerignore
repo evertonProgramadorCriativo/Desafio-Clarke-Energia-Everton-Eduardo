@@ -1,0 +1,33 @@
+# Node modules de todos os contextos
+**/node_modules
+**/npm-debug.log
+
+# Arquivos de ambiente
+**/.env
+**/.env.local
+
+# Git
+.git
+.gitignore
+
+# Docker
+docker-compose.yml
+**/.dockerignore
+
+# Documentação
+README.md
+docs/
+
+# Logs e cache
+**/logs
+**/*.log
+**/coverage
+
+# IDE
+.vscode
+.idea
+**/*.swp
+
+# OS
+.DS_Store
+Thumbs.db

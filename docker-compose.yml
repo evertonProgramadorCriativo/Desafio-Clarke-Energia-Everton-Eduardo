@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # Banco de Dados PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: clarke_postgres
+    environment:
+      POSTGRES_DB: clarke_energia
+      POSTGRES_USER: clarke
+      POSTGRES_PASSWORD: clarke123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - clarke_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U clarke"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend Node.js
+  backend:
+    build: ./backend
+    container_name: clarke_backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      PORT: 4000
+      DATABASE_URL: postgresql://clarke:clarke123@postgres:5432/clarke_energia
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - clarke_network
+    command: npm run dev
+
+volumes:
+  postgres_data:
+
+networks:
+  clarke_network:
+    driver: bridge
