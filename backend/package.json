@@ -9,6 +9,8 @@
     "start": "node src/index.js",
     "db:migrate": "node src/database/migrate.js",
     "db:seed": "node src/database/seed.js",
+    "db:reset": "node src/database/reset.js && node src/database/seed.js",
+    "db:fresh": "node src/database/reset.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
