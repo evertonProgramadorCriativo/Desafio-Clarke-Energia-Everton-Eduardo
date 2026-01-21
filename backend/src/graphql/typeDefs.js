@@ -36,6 +36,30 @@ export const typeDefs = `#graphql
     updatedAt: String!
   }
 
+  # Resultado de economia para um fornecedor
+  type Economia {
+    fornecedorId: ID!
+    fornecedorNome: String!
+    fornecedorLogo: String
+    fornecedorAvaliacao: Float!
+    fornecedorClientes: Int!
+    tipoSolucao: TipoSolucao!
+    custoKwhFornecedor: Float!
+    custoBase: Float!
+    custoFornecedor: Float!
+    economiaValor: Float!
+    economiaPercentual: Float!
+    temEconomia: Boolean!
+  }
+
+  # Solução disponível com economias
+  type SolucaoDisponivel {
+    tipoSolucao: TipoSolucao!
+    totalFornecedores: Int!
+    melhorEconomia: Economia
+    economias: [Economia!]!
+  }
+
   # Queries disponíveis
   type Query {
     # Buscar todos os estados
@@ -52,6 +76,12 @@ export const typeDefs = `#graphql
     
     # Buscar fornecedores por estado
     fornecedoresPorEstado(uf: String!): [Fornecedor!]!
+    
+    # QUERY PRINCIPAL - Calcular economia
+    calcularEconomia(
+      uf: String!
+      consumoKwh: Float!
+    ): [SolucaoDisponivel!]!
   }
 
   # Mutations (para testes)

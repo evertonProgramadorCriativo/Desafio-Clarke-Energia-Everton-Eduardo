@@ -68,12 +68,22 @@ Este backend foi desenvolvido como parte do **Desafio Clarke Energia** e oferece
 
 bash
 
-    # Clone o repositório
-    git clone <seu-repositorio>
-    cd clarke-energia-backend
-    
     # Inicie os containers
-    docker-compose up --build
+    
+      docker-compose up --build
+
+    # Execute as migrations (Criando Tabela no banco de dados):
+
+      docker exec -it clarke_backend npm run db:migrate
+
+    # Insira no banco de dados :
+
+      docker exec -it clarke_backend npm run db:migrate
+
+    # Parar containers
+    
+      docker-compose down  
+
     
     # A API estará disponível em http://localhost:4000/graphql
 
@@ -100,7 +110,7 @@ bash
  API GraphQL
 --------------
 
-### Queries Disponíveis
+### Queries Disponíveis Apollo Server
 
 #### 1\. Listar Todos os Estados
 
@@ -185,6 +195,48 @@ graphql
       }
     }
 
+#### 6\. Economia em São Paulo (30.000 kWh)
+### Cenário: Usuário em SP com consumo de 30.000 kWh
+
+graphql
+
+    query {
+    calcularEconomia(uf: "SP", consumoKwh: 30000) {
+        tipoSolucao
+        totalFornecedores
+        melhorEconomia {
+        fornecedorNome
+        economiaValor
+        economiaPercentual
+        custoBase
+        custoFornecedor
+        }
+        economias {
+        fornecedorNome
+        fornecedorAvaliacao
+        economiaValor
+        economiaPercentual
+        temEconomia
+        }
+    }
+    }
+#### 7\. Economia em Rio de Janeiro (50.000 kWh)
+### Cenário: Usuário em RJ com consumo de 50.000 kWh
+
+graphql
+
+    query {
+    calcularEconomia(uf: "RJ", consumoKwh: 50000) {
+        tipoSolucao
+        totalFornecedores
+        melhorEconomia {
+        fornecedorNome
+        economiaValor
+        economiaPercentual
+        }
+    }
+    }
+
 ### Mutations Disponíveis
 
 #### Criar Novo Estado
@@ -204,23 +256,6 @@ graphql
       }
     }
 
-### Usando Variáveis (Recomendado)
-
-graphql
-
-    query BuscarEstado($uf: String!) {
-      estado(uf: $uf) {
-        id
-        uf
-        nome
-        tarifaBaseKwh
-      }
-    }
-    
-    # Variables:
-    {
-      "uf": "RJ"
-    }
 
 * * *
 

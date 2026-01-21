@@ -1,5 +1,6 @@
 import { Estado, Fornecedor, Fornecedores } from '../models/index.js';
 import { Op } from 'sequelize';
+import { CalculoEconomiaService } from '../services/calculoEconomia.js';
 
 export const resolvers = {
   Query: {
@@ -90,11 +91,66 @@ export const resolvers = {
       } catch (error) {
         throw new Error(`Erro ao buscar fornecedores por estado: ${error.message}`);
       }
+    },
+
+    // QUERY PRINCIPAL - Calcular Economia
+    calcularEconomia: async (_, { uf, consumoKwh }) => {
+      try {
+        const ufUpper = uf.toUpperCase();
+
+        // Validar consumo
+        if (consumoKwh <= 0) {
+          throw new Error('O consumo deve ser maior que zero');
+        }
+
+        // Buscar estado e validar
+        const estado = await Estado.findOne({
+          where: { uf: ufUpper }
+        });
+
+        if (!estado) {
+          throw new Error(`Estado ${uf} não encontrado`);
+        }
+
+        // Buscar fornecedores que atendem o estado
+        const fornecedores = await Fornecedor.findAll({
+          include: [{
+            model: Fornecedores,
+            as: 'solucoes',
+            where: {
+              estadosAtendidos: {
+                [Op.contains]: [ufUpper]
+              }
+            },
+            required: true
+          }]
+        });
+
+        //  Verificar se há fornecedores
+        if (fornecedores.length === 0) {
+          return [];
+        }
+
+        // Calcular economias e agrupar por solução
+        const solucoesMap = CalculoEconomiaService.agruparPorSolucao(
+          fornecedores,
+          ufUpper,
+          consumoKwh,
+          parseFloat(estado.tarifaBaseKwh)
+        );
+
+        // Formatar resultado
+        const resultado = CalculoEconomiaService.formatarResultado(solucoesMap);
+
+        return resultado;
+      } catch (error) {
+        throw new Error(`Erro ao calcular economia: ${error.message}`);
+      }
     }
   },
 
   Mutation: {
-    // Criar um novo estado (apenas para testes)
+    // Criar um novo estado 
     criarEstado: async (_, { uf, nome, tarifaBaseKwh }) => {
       try {
         const estado = await Estado.create({
