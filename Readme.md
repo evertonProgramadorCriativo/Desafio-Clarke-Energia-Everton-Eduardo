@@ -344,7 +344,7 @@ env
     DB_PASSWORD=sua_senha
 
 
-📊 Dados Inseridos no Banco
+Dados Inseridos no Banco
 ---------------------------
 
 ### **Estados (5 registros)**
