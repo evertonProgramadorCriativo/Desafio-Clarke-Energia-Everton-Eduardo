@@ -78,8 +78,8 @@ bash
 
     # Insira no banco de dados :
 
-      docker exec -it clarke_backend npm run db:migrate
-
+      docker exec -it clarke_backend npm run db:seed
+      
     # Parar containers
     
       docker-compose down  
