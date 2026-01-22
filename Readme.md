@@ -344,6 +344,43 @@ env
     DB_PASSWORD=sua_senha
 
 
+📊 Dados Inseridos no Banco
+---------------------------
+
+### **Estados (5 registros)**
+
+| UF | Nome | Tarifa Base kWh |
+| --- | --- | --- |
+| SP | São Paulo | R$ 0,656 |
+| RJ | Rio de Janeiro | R$ 0,789 |
+| MG | Minas Gerais | R$ 0,612 |
+| ES | Espírito Santo | R$ 0,701 |
+| PR | Paraná | R$ 0,598 |
+
+### **Fornecedores (6 registros)**
+
+| Nome | Estado Origem | Nº Clientes | Avaliação |
+| --- | --- | --- | --- |
+| EcoEnergy Solar | SP | 1500 | 4.7 |
+| PowerFree Mercado | RJ | 3200 | 4.5 |
+| SolarTech Brasil | MG | 2100 | 4.8 |
+| Energia Livre SP | SP | 4500 | 4.6 |
+| GreenPower RJ | RJ | 1800 | 4.4 |
+| MegaWatt Soluções | PR | 2700 | 4.9 |
+
+### **Soluções dos Fornecedores (7 registros)**
+
+| Fornecedor | Tipo Solução | Custo kWh | Estados Atendidos |
+| --- | --- | --- | --- |
+| EcoEnergy Solar | GD | R$ 0,450 | SP, RJ, MG |
+| PowerFree Mercado | MERCADO\_LIVRE | R$ 0,520 | RJ, SP, ES |
+| SolarTech Brasil | GD | R$ 0,430 | MG, SP, RJ, ES |
+| Energia Livre SP | MERCADO\_LIVRE | R$ 0,510 | SP, MG, PR |
+| GreenPower RJ | GD | R$ 0,470 | RJ, ES |
+| GreenPower RJ | MERCADO\_LIVRE | R$ 0,540 | RJ, SP |
+| MegaWatt Soluções | MERCADO\_LIVRE | R$ 0,495 | PR, SP, MG |
+
+* * *
 
 **Desenvolvido Por Everton Eduardo para o Desafio Clarke Energia**
 
