@@ -17,7 +17,7 @@ const CardFornecedor = ({ economia, isPrimeiro }) => (
 
     {/* Header do Card */}
     <div className="flex items-center gap-4 mb-4">
-      <div className="text-4xl">{economia.fornecedorLogo}</div>
+      <div className="text-4xl"><img src={economia.fornecedorLogo} alt="logo" /></div>
       <div className="flex-1 min-w-0">
         <h4 className="text-lg font-semibold text-slate-800 truncate">
           {economia.fornecedorNome}
