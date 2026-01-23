@@ -2,7 +2,30 @@
 ## Clarke Energia - Everton Eduardo
 
 
-Backend da aplicação **Clarke Energia**, desenvolvido para suportar uma SPA de escolha de fornecedor de energia elétrica. Permite que usuários consultem soluções energéticas (Geração Distribuída e Mercado Livre), comparem fornecedores e calculem economia estimada com base no consumo e localização.
+**Projeto Full Stack para Consulta de Soluções Energéticas**
+
+Desenvolvimento de uma aplicação web full stack que permite aos usuários explorar e comparar opções de soluções energéticas sustentáveis, como **Geração Distribuída** (GD) e o **Mercado Livre de Energia**. A plataforma oferece uma experiência intuitiva para:
+
+*   **Consultar** diferentes alternativas energéticas personalizadas por perfil de consumo e localização.
+    
+*   **Comparar** fornecedores e planos disponíveis no mercado com base em critérios como custo, reputação e benefícios.
+    
+*   **Calcular** a economia estimada de forma automatizada, utilizando os dados de consumo (em kWh) e a região do usuário para garantir precisão nas projeções.
+    
+
+**Stack Tecnológica Principal:**
+
+*   **Frontend:** React.js para uma interface moderna, responsiva e dinâmica.
+    
+*   **Backend & API:** GraphQL para uma interface de consulta de dados eficiente e flexível, otimizando a comunicação entre cliente e servidor.
+    
+*   **Banco de Dados:** PostgreSQL para armazenamento robusto e relacional dos dados de usuários, fornecedores, tarifas e simulações.
+    
+
+Esta solução integrada conecta consumidores a insights valiosos sobre eficiência energética, promovendo decisões mais informadas e econômicas.
+
+---
+
 
 * * *
 
